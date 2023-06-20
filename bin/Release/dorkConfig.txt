@@ -1,0 +1,4 @@
+inurl:<DORK>
+allinurl:<DORK>
+intext:<DORK>
+intitle:<DORK>
