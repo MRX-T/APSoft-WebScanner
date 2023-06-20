@@ -1,0 +1,474 @@
+<Window x:Class="APSoft_WebScanner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:APSoft_WebScanner"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="637.5"
+        Width="847"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        MouseMove="Window_MouseMove">
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+
+                <Storyboard>
+                    <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00" Storyboard.TargetName="settingPannel">
+                        <SplineThicknessKeyFrame KeyTime="00:00:00" Value="-946,10,945.2,-10.2" />
+                        <SplineThicknessKeyFrame KeyTime="00:00:00.3" Value="0,0,0,0" />
+                    </ThicknessAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+            <BeginStoryboard>
+                <Storyboard>
+                    <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00" Storyboard.TargetName="statisticsPannel">
+                        <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0" />
+                        <SplineThicknessKeyFrame KeyTime="00:00:00.1" Value="-1909,10,1909.2,-10.2" />
+                    </ThicknessAnimationUsingKeyFrames>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid>
+        <Rectangle RadiusX="10px" RadiusY="10px" Fill="#FF252525" />
+        <Label Style="{StaticResource labelTitleStyle}" Content="APSoft WebScanner - version 2.0.1" Margin="10,10,0,0" HorizontalAlignment="Left" Width="311" Height="32" VerticalAlignment="Top" />
+        <Rectangle RadiusX="10px" RadiusY="10px" Fill="#FF343434" Margin="25,84,25,0" Height="338" VerticalAlignment="Top" />
+
+        <Grid Name="settingPannel"  Background="Transparent" Margin="-946,10,945.2,-10.2">
+            <Rectangle RadiusX="10px" RadiusY="10px" Fill="#FF424242" Margin="25,84,25,0" Height="35" VerticalAlignment="Top" />
+            <Label Style="{StaticResource labelTitleStyle}" Content="Setting" Margin="25,84,0,0" HorizontalAlignment="Left" Width="76" Height="35" VerticalAlignment="Top" />
+            <Label Style="{StaticResource labelItemStyle}" Content="Dork config" Margin="35,165,718,0" />
+            <ComboBox Name="dorkConfigBox" FontSize="15px"  HorizontalAlignment="Left" Margin="134,175,0,0" VerticalAlignment="Top" Width="152" Height="25" />
+            <Label Style="{StaticResource labelItemStyle}" Content="Vulnerability" Margin="35,215,718,0" />
+            <ComboBox Name="vulnerAbilityBox" FontSize="15px"  HorizontalAlignment="Left" Margin="134,225,0,0" VerticalAlignment="Top" Width="152" Height="25" SelectionChanged="vulnerAbilityBox_SelectionChanged" />
+            <CheckBox Click="useProxyCheckBox_Click" Name="useProxyCheckBox" FontSize="15px" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Use proxy" HorizontalAlignment="Left" Margin="421,175,0,0" VerticalAlignment="Top" Height="25" Width="109" />
+            <Label Style="{StaticResource labelItemStyle}" Content="Proxy url" Margin="45,265,727,0" />
+            <TextBox IsEnabled="False" Name="proxyUrlTextBox" FontSize="13px" HorizontalAlignment="Left" Height="25" Margin="134,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="318" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" TextChanged="proxyUrlTextBox_TextChanged">
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <CheckBox IsEnabled="False" Name="proxyAutoUpdateCheckBox" FontSize="15px" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Content="Proxy auto update" HorizontalAlignment="Left" Margin="421,225,0,0" VerticalAlignment="Top" Height="25" Width="162" Checked="proxyAutoUpdateCheckBox_Checked" />
+            <Button IsEnabled="False" Name="loadProxyButton" Cursor="Hand" Background="#FF252525" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Load" HorizontalAlignment="Left" Margin="457,275,0,0" VerticalAlignment="Top" Width="57" Height="25" Foreground="White" Click="loadProxyButton_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF404040" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF232323" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Label Style="{StaticResource labelItemStyle}" Content="Dork" Margin="35,315,718,0" />
+            <TextBox Name="dorkTextTextBox" MaxLines="1" FontSize="13px" HorizontalAlignment="Left" Height="25" Margin="134,325,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="283" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Button Name="addDorkButton" Cursor="Hand" Background="#FF252525" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Add" HorizontalAlignment="Left" Margin="422,325,0,0" VerticalAlignment="Top" Width="57" Height="25" Foreground="White" Click="addDorkButton_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF404040" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF232323" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Name="loadFromFileButton" Cursor="Hand" Background="#FF252525" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Load from file" HorizontalAlignment="Left" Margin="484,325,0,0" VerticalAlignment="Top" Width="114" Height="25" Foreground="White" Click="loadFromFileButton_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF404040" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF232323" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Name="clearAllButton" Cursor="Hand" Background="#FF252525" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Clear all" HorizontalAlignment="Left" Margin="603,325,0,0" VerticalAlignment="Top" Width="80" Height="25" Foreground="White" Click="clearAllButton_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF404040" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF232323" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Label Style="{StaticResource labelItemStyle}" Content="Thread" Margin="35,365,718,0" />
+            <TextBox TextChanged="threadTextBox_TextChanged" Name="threadTextBox" FontSize="15px" HorizontalAlignment="Left" Height="25" Margin="134,375,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="105" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Label Style="{StaticResource labelItemStyle}" Content="Connection timeout" Margin="253,365,418,0" />
+            <TextBox TextChanged="timeOutTextBox_TextChanged" Name="timeOutTextBox" FontSize="15px" HorizontalAlignment="Left" Height="25" Margin="434,375,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="105" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Button Name="loadConfigsButton" Cursor="Hand" Background="#FF252525" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Load configs" HorizontalAlignment="Left" Margin="291,175,0,0" VerticalAlignment="Top" Width="97" Height="25" Foreground="White" Click="loadConfigsButton_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF404040" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF232323" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Label Style="{StaticResource labelItemStyle}" Content="Proxy type" Margin="540,265,213,0" />
+            <ComboBox IsEnabled="False" Name="proxyTypeBox" FontSize="15px"  HorizontalAlignment="Left" Margin="639,275,0,0" VerticalAlignment="Top" Width="152" Height="25" SelectionChanged="proxyTypeBox_SelectionChanged" />
+            <Label Style="{StaticResource labelItemStyle}" Content="Interval" Margin="596,215,157,0" />
+            <TextBox TextChanged="proxyAutoUpdateInterval_TextChanged" IsEnabled="False" Name="proxyAutoUpdateInterval" FontSize="15px" HorizontalAlignment="Left" Height="25" Margin="695,225,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="105" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Label Style="{StaticResource labelItemStyle}" Content="Inheritance" Margin="580,365,164,0" />
+            <TextBox TextChanged="inheritanceTextBox_TextChanged" Name="inheritanceTextBox" FontSize="15px" HorizontalAlignment="Left" Height="25" Margin="683,375,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="105" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <Button x:Name="loadCustomUrl" Cursor="Hand" Background="#FF252525" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Load url" HorizontalAlignment="Left" Margin="291,225,0,0" VerticalAlignment="Top" Width="97" Height="25" Foreground="White" Click="loadCustomUrl_Click">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10" />
+                    </Style>
+                </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF404040" />
+                                        </Trigger>
+                                        <Trigger Property="IsPressed" Value="true">
+                                            <Setter Property="Background" TargetName="Border" Value="#FF232323" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+        <Grid  Name="statisticsPannel"  Background="Transparent" Margin="-1909,10,1909.2,-10.2">
+            <Rectangle RadiusX="10px" RadiusY="10px" Fill="#FF424242" Margin="25,84,25,0" Height="35" VerticalAlignment="Top" />
+            <Label Style="{StaticResource labelTitleStyle}" Content="Statistics" Margin="25,84,0,0" HorizontalAlignment="Left" Width="76" Height="35" VerticalAlignment="Top" />
+            <ListView Name="resultView" Margin="45,137,45,0" Height="182" VerticalAlignment="Top">
+                <ListView.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="15" />
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="id"  Width="50px" DisplayMemberBinding="{Binding id}" />
+                        <GridViewColumn Header="url" Width="390px" DisplayMemberBinding="{Binding url}" />
+                        <GridViewColumn Header="vulnerability"  Width="80px" DisplayMemberBinding="{Binding vulnerability}" />
+                        <GridViewColumn Header="WAF"  Width="80px" DisplayMemberBinding="{Binding WAF}" />
+                        <GridViewColumn  Header="payload"  Width="90px" DisplayMemberBinding="{Binding payload}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Label Style="{StaticResource labelItemStyle}" Content="Url found" Margin="45,324,0,149" HorizontalAlignment="Left" Width="79" VerticalContentAlignment="Top" />
+            <Label Name="urlFoundLabel" Style="{StaticResource labelItemStyle}" Content="0" Margin="145,324,0,149" HorizontalAlignment="Left" Width="70" VerticalContentAlignment="Top" />
+            <Label Style="{StaticResource labelItemStyle}" Content="Uninjectable" Margin="45,364,0,107" HorizontalAlignment="Left" Width="93" VerticalContentAlignment="Top" />
+            <Label Name="vulnerAbleLabel" Style="{StaticResource labelItemStyle}" Content="0" Margin="145,364,0,107" HorizontalAlignment="Left" Width="70" VerticalContentAlignment="Top" />
+            <Label Style="{StaticResource labelItemStyle}" Content="Bing" Margin="245,324,0,149" HorizontalAlignment="Left" Width="59" VerticalContentAlignment="Top" />
+            <Label Name="bingLabel" Style="{StaticResource labelItemStyle}" Content="0" Margin="310,324,0,149" HorizontalAlignment="Left" Width="70" VerticalContentAlignment="Top" />
+            <Label Style="{StaticResource labelItemStyle}" Content="Google" Margin="245,364,0,107" HorizontalAlignment="Left" Width="59" VerticalContentAlignment="Top" />
+            <Label Name="googleLabel" Style="{StaticResource labelItemStyle}" Content="0" Margin="310,364,0,107" HorizontalAlignment="Left" Width="70" VerticalContentAlignment="Top" />
+            <Label Style="{StaticResource labelItemStyle}" Content="xss" Margin="403,324,0,149" HorizontalAlignment="Left" Width="59" VerticalContentAlignment="Top" />
+            <Label Name="xssLabel" Style="{StaticResource labelItemStyle}" Content="0" Margin="468,324,0,149" HorizontalAlignment="Left" Width="70" VerticalContentAlignment="Top" />
+            <Label Style="{StaticResource labelItemStyle}" Content="sql" Margin="404,364,0,107" HorizontalAlignment="Left" Width="59" VerticalContentAlignment="Top" />
+            <Label Name="sqlLabel" Style="{StaticResource labelItemStyle}" Content="0" Margin="468,364,0,107" HorizontalAlignment="Left" Width="70" VerticalContentAlignment="Top" />
+            <Label Style="{StaticResource labelItemStyle}" Content="Dork checked" Margin="564,324,0,0" HorizontalAlignment="Left" Width="103" VerticalContentAlignment="Top" />
+            <Label Name="dorkCheckedLabel" Style="{StaticResource labelItemStyle}" Content="0" Margin="672,324,0,0" HorizontalAlignment="Left" Width="70" VerticalContentAlignment="Top" />
+            <Label  Style="{StaticResource labelItemStyle}" Content="Elapsed time" Margin="564,364,0,107" HorizontalAlignment="Left" Width="103" VerticalContentAlignment="Top" />
+            <Label Name="elapsedTimeLabel" Style="{StaticResource labelItemStyle}" Content="00 : 00 : 00" Margin="672,364,0,107" HorizontalAlignment="Left"  HorizontalContentAlignment="Center" Width="109" VerticalContentAlignment="Top" />
+        </Grid>
+
+        <Button Cursor="Hand" Background="#FF404040" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Setting" HorizontalAlignment="Left" Margin="700,427,0,0" VerticalAlignment="Top" Width="122" Height="29" Foreground="White">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+
+                    <BeginStoryboard>
+
+                        <Storyboard>
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00" Storyboard.TargetName="settingPannel">
+                                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="-946,10,945.2,-10.2" />
+                                <SplineThicknessKeyFrame KeyTime="00:00:00.3" Value="0,0,0,0" />
+                            </ThicknessAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00" Storyboard.TargetName="statisticsPannel">
+                                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0" />
+                                <SplineThicknessKeyFrame KeyTime="00:00:00.1" Value="-1909,10,1909.2,-10.2" />
+                            </ThicknessAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" TargetName="Border" Value="#FF464646" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="true">
+
+                                        <Setter Property="Background" TargetName="Border" Value="#FF232323" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Cursor="Hand" Background="#FF404040" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Statistics" HorizontalAlignment="Left" Margin="573,427,0,0" VerticalAlignment="Top" Width="122" Height="29" Foreground="White">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
+            <Button.Triggers>
+                <EventTrigger RoutedEvent="Button.Click">
+
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00" Storyboard.TargetName="statisticsPannel">
+                                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="-1909,10,1909.2,-10.2" />
+                                <SplineThicknessKeyFrame KeyTime="00:00:00.3" Value="0,0,0,0" />
+                            </ThicknessAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00" Storyboard.TargetName="settingPannel">
+                                <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0,0,0,0" />
+                                <SplineThicknessKeyFrame KeyTime="00:00:00.1" Value="-946,10,945.2,-10.2" />
+                            </ThicknessAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Button.Triggers>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" TargetName="Border" Value="#FF464646" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="true">
+                                        <Setter Property="Background" TargetName="Border" Value="#FF232323" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Cursor="Hand" Background="#FF404040" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Start" HorizontalAlignment="Left" Margin="25,427,0,0" VerticalAlignment="Top" Width="122" Height="29" Foreground="White" Click="Button_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" TargetName="Border" Value="#FF464646" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="true">
+                                        <Setter Property="Background" TargetName="Border" Value="#FF232323" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Name="stopButton" Cursor="Hand" Background="#FF404040" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Stop" HorizontalAlignment="Left" Margin="152,427,0,0" VerticalAlignment="Top" Width="122" Height="29" Foreground="White" Click="Button_Click_1">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter Property="Background" TargetName="Border" Value="#FF464646" />
+                                    </Trigger>
+                                    <Trigger Property="IsPressed" Value="true">
+                                        <Setter Property="Background" TargetName="Border" Value="#FF232323" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <RichTextBox  VerticalScrollBarVisibility="Visible"  BorderThickness="1" BorderBrush="Transparent" IsReadOnly="True" Name="logRichTextBox" HorizontalAlignment="Left" Height="135" Margin="25,0,0,38" VerticalAlignment="Bottom" Width="797" Background="#FF404040" Foreground="White" SelectionBrush="#FFB6B1B1" MinWidth="5" TextChanged="logRichTextBox_TextChanged">
+            <RichTextBox.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10" />
+                </Style>
+            </RichTextBox.Resources>
+        </RichTextBox>
+        <Label Style="{StaticResource labelTitleStyle}" Content="ph09nixom@gmail.com" Margin="309.5,427,309.5,0" VerticalContentAlignment="Top" Height="34" VerticalAlignment="Top" />
+        <Label MouseDoubleClick="Label_MouseDoubleClick" Cursor="Hand" Style="{StaticResource labelTitleStyle}" Content="x" Margin="807,10,10,0" RenderTransformOrigin="0.594,0.531" Height="32" VerticalAlignment="Top" />
+        <Label MouseDoubleClick="Label_MouseDoubleClick_1" Cursor="Hand" Style="{StaticResource labelTitleStyle}" Content="-" Margin="770,10,0,0" HorizontalAlignment="Left" Width="32" Height="32" VerticalAlignment="Top" />
+    </Grid>
+</Window>
