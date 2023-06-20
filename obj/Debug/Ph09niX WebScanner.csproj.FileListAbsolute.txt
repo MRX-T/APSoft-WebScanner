@@ -1,0 +1,19 @@
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\MainWindow.g.cs
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\App.g.cs
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\Ph09niX WebScanner_MarkupCompile.cache
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\Ph09niX WebScanner_MarkupCompile.lref
+D:\Hacking\Tools\Ph09niX WebScanner\bin\Debug\Ph09niX WebScanner.exe.config
+D:\Hacking\Tools\Ph09niX WebScanner\bin\Debug\Ph09niX WebScanner.exe
+D:\Hacking\Tools\Ph09niX WebScanner\bin\Debug\Ph09niX WebScanner.pdb
+D:\Hacking\Tools\Ph09niX WebScanner\bin\Debug\Leaf.xNet.dll
+D:\Hacking\Tools\Ph09niX WebScanner\bin\Debug\Newtonsoft.Json.dll
+D:\Hacking\Tools\Ph09niX WebScanner\bin\Debug\xNet.dll
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\App.baml
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\MainWindow.baml
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\Ph09niX WebScanner.g.resources
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\Ph09niX_WebScanner.Properties.Resources.resources
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\Ph09niX WebScanner.csproj.GenerateResource.cache
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\Ph09niX WebScanner.csproj.CopyComplete
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\Ph09niX WebScanner.exe
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\Ph09niX WebScanner.pdb
+D:\Hacking\Tools\Ph09niX WebScanner\obj\Debug\Ph09niX WebScanner.csprojAssemblyReference.cache
